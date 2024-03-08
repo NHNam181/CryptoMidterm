@@ -1,14 +1,22 @@
-import numpy as np
 import operation as o
 
 
-def shiftRow(a):
-    matrix = np.array(a).reshape(4, 4)
-    k = np.transpose(matrix)
-    o.leftRotatebyOne(k[1], 4)
-    o.leftRotate(k[2], 2, 4)
-    o.leftRotate(k[3], 3, 4)
-    return k
+def shiftRow(block):
+    r1 = []
+    r2 = []
+    r3 = []
+    r4 = []
+
+    # Split up block into rows
+    for i in range(4):
+        r1.append(block[4 * i])
+        r2.append(block[4 * i + 1])
+        r3.append(block[4 * i + 2])
+        r4.append(block[4 * i + 3])
+    o.leftRotatebyOne(r2, 4)
+    o.leftRotate(r3, 2, 4)
+    o.leftRotate(r4, 3, 4)
+    return [r1, r2, r3, r4]
 
 
 def galois_multiplication(a, b):

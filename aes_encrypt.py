@@ -1,5 +1,4 @@
 import lookup
-import numpy as np
 import operation as o
 from Round import diffusion_layer as d
 from Round import byte_substitude_layer as bs
@@ -18,19 +17,16 @@ def padding(text):
         return text
 
 
-cons_matrix = np.array(lookup.fixed_matrix)
-
-
 def encrypt(plaintext, init_key):
     key = k.subKeyLis(o.text_to_hex(init_key))
     cipher = o.xor(o.text_to_hex(plaintext),
-                       key[0], 16)
+                   key[0], 16)
     for i in range(10):
         cipher = bs.subByte(cipher)
         cipher = d.shiftRow(cipher)
         if i != 9:
-            cipher = d.mixColumn(cons_matrix, cipher)
-        cipher = o.xor(cipher,key[i], 16)
+            cipher = d.mixColumn(lookup.fixed_matrix, cipher)
+        cipher = o.xor(cipher, key[i], 16)
     return cipher
 
 
