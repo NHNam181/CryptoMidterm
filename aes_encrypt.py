@@ -2,7 +2,7 @@ import lookup
 import operation as o
 from Round import diffusion_layer as d
 from Round import byte_substitude_layer as bs
-from Round import key_addition_layer as k
+from Round import key_addition_layer as ka
 
 
 # Ensure the length of input is a multiple of 16 bytes (128 bits)
@@ -18,7 +18,7 @@ def padding(text):
 
 
 def encrypt(plaintext, init_key):
-    key = k.subKeyLis(o.text_to_hex(init_key))
+    key = ka.subKeyLis(o.text_to_hex(init_key))
     cipher = o.xor(o.text_to_hex(plaintext),key[0], 16)
     for i in range(10):
         cipher = bs.subByte(cipher)
@@ -29,8 +29,9 @@ def encrypt(plaintext, init_key):
             cipher = d.mixColumn(lookup.fixed_matrix, cipher)
         else:
             temp = []
-            for j in range(4):
-                temp.extend(cipher[j])
+            for k in range(4):
+                for j in range(4):
+                    temp.append(cipher[j][k])
             cipher = temp
         print(". Post mix col:",cipher)
         cipher = o.xor(cipher, key[i+1], 16)
@@ -42,6 +43,6 @@ def encrypt(plaintext, init_key):
 init_key = "Thats my Kung Fu"
 plaintext = "Two One Nine Two"
 plaintext = padding(plaintext)
-print("key", k.subKeyLis(o.text_to_hex(init_key)))
+print("key", ka.subKeyLis(o.text_to_hex(init_key)))
 ciphertext = encrypt(plaintext, init_key)
 print("Cipher", ciphertext)

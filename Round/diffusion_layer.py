@@ -46,8 +46,8 @@ def galois_multiplication(a, b):
 
 def mixColumn(cons_matrix, a):
     mygod = []
-    for j in range(4):
-        for k in range(4):
+    for k in range(4):
+        for j in range(4):
             add = 0
             for i in range(4):
                 o = galois_multiplication(int(cons_matrix[j][i], 16),
