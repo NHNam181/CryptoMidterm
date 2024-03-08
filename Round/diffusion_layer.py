@@ -9,6 +9,13 @@ def shiftRow(a):
     o.leftRotate(k[3],3,4)
     return k
 
+def InvShift(a):
+    matrix = np.array(a).reshape(4,4)
+    o.leftRotate(matrix[1],3,4)
+    o.leftRotate(matrix[2],2,4)
+    o.leftRotatebyOne(matrix[3],4)
+    return np.transpose(matrix)
+
 def galois_multiplication(a, b):
     """Galois multiplication of 8 bit characters a and b."""
     p = 0

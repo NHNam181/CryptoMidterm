@@ -22,17 +22,17 @@ cons_matrix = np.array(lookup.fixed_matrix)
 def encryp(plaintext, init_key):
     key_add = k.subKeyLis(o.text_to_hex(init_key))
     t1 = o.xor(o.text_to_hex(plaintext),key_add[0],16)
+    print(t1)
     t2 = bs.subByte(t1)
+    print(t2)
     t3 = d.shiftRow(t2)
+    print(t3)
     t4 = d.mixColumn(cons_matrix, t3)
     return t4
     
 
 init_key = "Thats my Kung Fu"
 plaintext = "Two One Nine Two"
-
-# a = k.subKeyLis(o.text_to_hex(init_key))
-# print(a[0])
 
 r = encryp(plaintext, init_key)
 print(r)
