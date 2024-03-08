@@ -12,7 +12,7 @@ def xor(w1, w2, length):
         a = w1[i]
         b = w2[i]
         nk[i] = hex(int(a, 16) ^ int(b, 16))
-    return nk # Return hexadecimal value
+    return nk  # Return hexadecimal value
 
 
 # Function to left rotate arr[] of size n by d*/

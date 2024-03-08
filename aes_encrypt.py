@@ -19,12 +19,12 @@ def padding(text):
 
 def encrypt(plaintext, init_key):
     key = ka.subKeyLis(o.text_to_hex(init_key))
-    cipher = o.xor(o.text_to_hex(plaintext),key[0], 16)
+    cipher = o.xor(o.text_to_hex(plaintext), key[0], 16)
     for i in range(10):
         cipher = bs.subByte(cipher)
-        print(". Post sub byte:",cipher)
+        print(". Post sub byte:", cipher)
         cipher = d.shiftRow(cipher)
-        print(". Post shift row:",cipher)
+        print(". Post shift row:", cipher)
         if i != 9:
             cipher = d.mixColumn(lookup.fixed_matrix, cipher)
         else:
@@ -33,9 +33,9 @@ def encrypt(plaintext, init_key):
                 for j in range(4):
                     temp.append(cipher[j][k])
             cipher = temp
-        print(". Post mix col:",cipher)
-        cipher = o.xor(cipher, key[i+1], 16)
-        print(i,". Round key:", key[i+1])
+        print(". Post mix col:", cipher)
+        cipher = o.xor(cipher, key[i + 1], 16)
+        print(i, ". Round key:", key[i + 1])
         print(i, ". Post round key:", cipher)
     return cipher
 

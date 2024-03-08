@@ -1,5 +1,5 @@
 import operation as o
-from Round import diffusion_layer as d 
+from Round import diffusion_layer as d
 
 
 def splitBlock(block):
@@ -23,11 +23,13 @@ def shiftRow(block):
     o.leftRotate(all[3], 3, 4)
     return all
 
+
 def InvShift(block):
     o.leftRotate(block[1], 3, 4)
     o.leftRotate(block[2], 2, 4)
     o.leftRotatebyOne(block[3], 4)
     return block
+
 
 def galois_multiplication(a, b):
     """Galois multiplication of 8 bit characters a and b."""
