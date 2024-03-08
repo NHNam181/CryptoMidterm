@@ -1,29 +1,33 @@
 import operation as o
+from Round import diffusion_layer as d 
 
 
-def shiftRow(block):
+def splitBlock(block):
     r1 = []
     r2 = []
     r3 = []
     r4 = []
-
-    # Split up block into rows
     for i in range(4):
         r1.append(block[4 * i])
         r2.append(block[4 * i + 1])
         r3.append(block[4 * i + 2])
         r4.append(block[4 * i + 3])
-    o.leftRotatebyOne(r2, 4)
-    o.leftRotate(r3, 2, 4)
-    o.leftRotate(r4, 3, 4)
-    return [r1, r2, r3, r4]
+    all = [r1, r2, r3, r4]
+    return all
 
-def InvShift(a):
-    matrix = np.array(a).reshape(4,4)
-    o.leftRotate(matrix[1],3,4)
-    o.leftRotate(matrix[2],2,4)
-    o.leftRotatebyOne(matrix[3],4)
-    return np.transpose(matrix)
+
+def shiftRow(block):
+    all = splitBlock(block)
+    o.leftRotatebyOne(all[1], 4)
+    o.leftRotate(all[2], 2, 4)
+    o.leftRotate(all[3], 3, 4)
+    return all
+
+def InvShift(block):
+    o.leftRotate(block[1], 3, 4)
+    o.leftRotate(block[2], 2, 4)
+    o.leftRotatebyOne(block[3], 4)
+    return block
 
 def galois_multiplication(a, b):
     """Galois multiplication of 8 bit characters a and b."""

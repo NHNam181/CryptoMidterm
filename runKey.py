@@ -2,9 +2,11 @@ import operation as o
 from Round import key_addition_layer as k
 
 # Initial key
-ini_key = "Thats my Kung Fu"
-subkey = o.text_to_hex(ini_key)
+def runKey():
+    init = "Thats my Kung Fu"
+    subkey = o.text_to_hex(init)
+    r = k.subKeyLis(subkey)
+    return r
 
-r = k.subKeyLis(subkey)
-print(r)
+
     
