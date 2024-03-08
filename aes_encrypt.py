@@ -39,8 +39,12 @@ init_key = "Thats my Kung Fu"
 plaintext = "Two One Nine Two"
 plaintext = padding(plaintext)
 cipher_hex = encrypt(plaintext, init_key)
-print(cipher_hex)
-ciphertext = ''
-for i in cipher_hex:
-    ciphertext += chr(int(i,16))
-print(ciphertext)
+print(d.splitBlock(cipher_hex))
+
+print("\nAter convert to text: ")
+# Convert each inner list to a text string
+text_list = [''.join([chr(int(hex_value, 16)) for hex_value in inner_list]) for inner_list in d.splitBlock(cipher_hex)]
+
+# Print the resulting text strings
+for text in text_list:
+    print(text)
