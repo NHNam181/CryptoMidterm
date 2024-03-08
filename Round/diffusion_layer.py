@@ -1,12 +1,13 @@
 import numpy as np
 import operation as o
 
+
 def shiftRow(a):
-    matrix = np.array(a).reshape(4,4)
+    matrix = np.array(a).reshape(4, 4)
     k = np.transpose(matrix)
-    o.leftRotatebyOne(k[1],4)
-    o.leftRotate(k[2],2,4)
-    o.leftRotate(k[3],3,4)
+    o.leftRotatebyOne(k[1], 4)
+    o.leftRotate(k[2], 2, 4)
+    o.leftRotate(k[3], 3, 4)
     return k
 
 def InvShift(a):
@@ -30,13 +31,15 @@ def galois_multiplication(a, b):
         b >>= 1
     return p
 
+
 def mixColumn(cons_matrix, a):
     mygod = []
-    for j in range (4):
+    for j in range(4):
         for k in range(4):
-            add =0
+            add = 0
             for i in range(4):
-                o = galois_multiplication(int(cons_matrix[j][i], 16), int(a[i][k], 16))
-                add ^=o
+                o = galois_multiplication(int(cons_matrix[j][i], 16),
+                                          int(a[i][k], 16))
+                add ^= o
             mygod.append(hex(add))
     return mygod
