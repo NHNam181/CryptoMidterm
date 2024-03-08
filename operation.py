@@ -1,8 +1,7 @@
 def text_to_hex(text):
     hex_array = []
     for char in text:
-        hex_value = hex(ord(char))[2:]
-        # Take only the hexadecimal value, leaving out the '0x'
+        hex_value = hex(ord(char))
         hex_array.append(hex_value)
     return hex_array
 
@@ -12,7 +11,7 @@ def xor(w1, w2, length):
     for i in range(length):
         a = w1[i]
         b = w2[i]
-        nk[i] = hex(int(a, 16) ^ int(b, 16))[2:]
+        nk[i] = hex(int(a, 16) ^ int(b, 16))
     return nk # Return hexadecimal value
 
 
