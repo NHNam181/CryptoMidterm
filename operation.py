@@ -2,6 +2,7 @@ def text_to_hex(text):
     hex_array = []
     for char in text:
         hex_value = hex(ord(char))[2:]
+        # Take only the hexadecimal value, leaving out the '0x'
         hex_array.append(hex_value)
     return hex_array
 
@@ -12,7 +13,7 @@ def xor(w1, w2, length):
         a = w1[i]
         b = w2[i]
         nk[i] = hex(int(a, 16) ^ int(b, 16))[2:]
-    return nk
+    return nk # Return hexadecimal value
 
 
 # Function to left rotate arr[] of size n by d*/
